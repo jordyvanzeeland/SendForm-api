@@ -33,9 +33,10 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ApiKeyMiddleware::class
+    'middleware' => ApiKeyValidationMiddleware::class,
+    'prefix' => 'mail'
 ], function ($router) {
-    Route::post('/send-email', 'App\Http\Controllers\MailController@send');
+    Route::post('/send', 'App\Http\Controllers\MailController@send');
     // Route::post('/woocommerce/order-email', [WooMailController::class, 'sendOrderMail']);
 });
 

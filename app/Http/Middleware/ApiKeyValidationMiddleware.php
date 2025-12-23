@@ -9,16 +9,11 @@ use App\Models\ApiKey;
 
 class ApiKeyValidationMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
         $key = $request->header('X_API_KEY');
         
-        if(!key){
+        if(!$key){
             return response()->json(['message' => 'API key is missing'], 401);
         }
 
