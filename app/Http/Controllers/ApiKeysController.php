@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ApiKey;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ApiKeysController extends Controller
@@ -44,12 +45,8 @@ class ApiKeysController extends Controller
      */
 
      public function newKey(Request $request){
-        $validated = $request->validate([
-            'clientid' => 'required|integer',
-            'key' => 'required|string|max:255'
-        ]);
-
-        $newKey = ApiKey::create($validated);
+        $request['key'] = Str::random(40);
+        $newKey = ApiKey::create($request->all());
         return response()->json(['message' => 'New api key registered', 'key' => $newKey], 201);
      }
 

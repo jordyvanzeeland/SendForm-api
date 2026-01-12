@@ -21,7 +21,7 @@ class MailController extends Controller
             return response()->json(["message" => "Client not found"]);
         }
 
-        Mail::to($client->mailto)->send(new GenericMail($data));
+        Mail::to($client->mailto)->send(new GenericMail($data, $client->name));
         return response()->json(['status' => 'sended to ' . $client->mailto]);
     }
 }
