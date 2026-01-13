@@ -46,6 +46,7 @@ class ClientsController extends Controller
      public function newClient(Request $request){
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'domain' => 'required|string|max:255',
             'mailto' => 'required|string|max:255',
             'active' => 'required|integer'
         ]);
@@ -62,6 +63,7 @@ class ClientsController extends Controller
      public function updateClient(Request $request, int $clientid){
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'domain' => 'required|string|max:255',
             'mailto' => 'required|string|max:255',
             'active' => 'required|integer'
         ]);
